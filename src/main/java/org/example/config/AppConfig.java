@@ -1,8 +1,9 @@
 package org.example.config;
 
-import org.example.Developer;
-import org.example.JuniorDeveloper;
+import org.example.api.Developer;
+import org.example.api.JuniorDeveloper;
 import org.example.infra.InjectRandomIntAnnotationProcessor;
+import org.example.infra.PostProxyInvokerContextListener;
 import org.example.infra.ProfilingAnnotationBeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +22,12 @@ public class AppConfig {
     }
 
     @Bean
-    public Developer developer() {
+    public PostProxyInvokerContextListener postProxyInvokerContextListener() {
+        return new PostProxyInvokerContextListener();
+    }
+
+    @Bean
+    public JuniorDeveloper developer() {
         return new JuniorDeveloper();
     }
 }

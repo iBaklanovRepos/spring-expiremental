@@ -1,13 +1,14 @@
-package org.example;
+package org.example.api;
 
 import org.example.utils.InjectRandomInt;
+import org.example.utils.PostProxy;
 import org.example.utils.Profiling;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-@Profiling
 @Component
+@Profiling
 public class JuniorDeveloper implements Developer {
     @InjectRandomInt(min = 2, max = 8)
     private int times;
@@ -20,6 +21,11 @@ public class JuniorDeveloper implements Developer {
     public void init() {
         System.out.println("Phase 2");
         System.out.println(times);
+    }
+
+    @PostProxy
+    public void postProxy(){
+        System.out.println("Phase 3");
     }
 
     @Override
