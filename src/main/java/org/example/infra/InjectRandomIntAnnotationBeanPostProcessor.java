@@ -1,6 +1,6 @@
 package org.example.infra;
 
-import org.example.utils.InjectRandomInt;
+import org.example.annotations.InjectRandomInt;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.util.ReflectionUtils;
@@ -8,7 +8,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-public class InjectRandomIntAnnotationProcessor implements BeanPostProcessor {
+public class InjectRandomIntAnnotationBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {

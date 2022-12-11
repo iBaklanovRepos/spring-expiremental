@@ -1,17 +1,15 @@
 package org.example.infra;
 
-import org.example.utils.Profiling;
+import org.example.annotations.Profiling;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProfilingAnnotationBeanPostProcessor implements BeanPostProcessor {
-    private Map<String, Class> beans = new HashMap<>();
+    private Map<String, Class<?>> beans = new HashMap<>();
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (bean.getClass().isAnnotationPresent(Profiling.class)) {
@@ -22,7 +20,7 @@ public class ProfilingAnnotationBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        Class beanClass = beans.get(beanName);
+        Class<?> beanClass = beans.get(beanName);
         if (beanClass != null) {
             return Proxy.newProxyInstance(beanClass.getClassLoader(),
                     beanClass.getInterfaces(),

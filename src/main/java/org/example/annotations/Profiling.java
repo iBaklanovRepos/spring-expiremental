@@ -1,11 +1,8 @@
-package org.example.utils;
+package org.example.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface InjectRandomInt {
-    int max();
-
-    int min();
+public @interface Profiling {
 }

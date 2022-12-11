@@ -1,10 +1,11 @@
 package org.example;
 
-import org.example.config.AppConfig;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.example.api.Developer;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("settings.xml");
+        context.getBean(Developer.class).speak();
     }
 }
