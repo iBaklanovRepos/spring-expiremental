@@ -13,9 +13,10 @@ import java.util.Random;
 @Configuration
 @ComponentScan("org.example")
 public class AppConfig {
+    public static final String PERIODICAL_SCOPE = "periodical";
 
     @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    @Scope(PERIODICAL_SCOPE)
     public Color color() {
         Random random = new Random();
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
